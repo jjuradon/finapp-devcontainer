@@ -1,0 +1,31 @@
+{
+  "name": "finapp-devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "remoteUser": "codespace",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/codespace/.ssh,readonly"
+  ],
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "jjuradon/finapp-backend": {
+          "permissions": "read"
+        },
+        "jjuradon/finapp-web": {
+          "permissions": "read"
+        },
+        "jjuradon/finapp-mobile": {
+          "permissions": "read"
+        },
+        "jjuradon/finapp-gitops": {
+          "permissions": "read"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
