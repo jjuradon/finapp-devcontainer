@@ -3,26 +3,34 @@
   "image": "mcr.microsoft.com/devcontainers/universal:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {}
   },
   "remoteUser": "codespace",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/codespace/.ssh,readonly"
+    "source=${localEnv:HOME}/.ssh,target=/home/codespace/.ssh,readonly",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
   "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker"
+      ]
+    },
     "codespaces": {
       "repositories": {
         "jjuradon/finapp-backend": {
-          "permissions": "read"
+          "permissions": "write"
         },
         "jjuradon/finapp-web": {
-          "permissions": "read"
+          "permissions": "write"
         },
         "jjuradon/finapp-mobile": {
-          "permissions": "read"
+          "permissions": "write"
         },
         "jjuradon/finapp-gitops": {
-          "permissions": "read"
+          "permissions": "write"
         }
       }
     }
